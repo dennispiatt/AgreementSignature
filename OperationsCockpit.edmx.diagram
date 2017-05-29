@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bcc499846f664a71bb7d6db1e1f6349f" Name="Diagram1">
+        <EntityTypeShape EntityType="OperationsCockpit.Model.Agreement" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OperationsCockpit.Model.AgreementSignature" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_Agreement_Agreement_Id" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OperationsCockpit.Model.ClaimSet" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="OperationsCockpit.Model.User" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="OperationsCockpit.Model.District" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="OperationsCockpit.Model.Region" Width="1.5" PointX="0.75" PointY="21" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_authorization_ClaimSet_authorization_User_User_Id" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SignedForUser_Id" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SigningUser_Id" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_District_District_Id" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_Region_Region_Id" />
+        <EntityTypeShape EntityType="OperationsCockpit.Model.ISD" Width="1.5" PointX="3" PointY="20.875" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_domain_District_domain_ISD_ISD_Id" />
+        <AssociationConnector Association="OperationsCockpit.Model.FK_domain_ISD_domain_Region_Region_Id" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

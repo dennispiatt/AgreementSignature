@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OperationsCockpit.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClaimSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="int" Nullable="false" />
+          <Property Name="District_Id" Type="int" />
+          <Property Name="Region_Id" Type="int" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Agreement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MimeType" Type="nvarchar(max)" />
+          <Property Name="Body" Type="varbinary(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="IsActivationAgreement" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AgreementSignature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgreementStatus" Type="int" Nullable="false" />
+          <Property Name="RoleRequiredToSign" Type="int" Nullable="false" />
+          <Property Name="DateSigned" Type="datetime" />
+          <Property Name="SignedBody" Type="varbinary(max)" />
+          <Property Name="SignedMimeType" Type="nvarchar(max)" />
+          <Property Name="IsExpired" Type="bit" Nullable="false" />
+          <Property Name="Agreement_Id" Type="int" Nullable="false" />
+          <Property Name="District_Id" Type="int" />
+          <Property Name="Region_Id" Type="int" />
+          <Property Name="SignedForUser_Id" Type="int" />
+          <Property Name="SigningUser_Id" Type="int" />
+          <Property Name="EmailReminderPending" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DistrictCode" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="SchoolType" Type="int" Nullable="false" />
+          <Property Name="DistrictCommonName" Type="nvarchar(max)" />
+          <Property Name="CountyCode" Type="int" Nullable="false" />
+          <Property Name="CountyName" Type="nvarchar(max)" />
+          <Property Name="CharteringAgencyCode" Type="nvarchar(max)" />
+          <Property Name="CharteringAgencyName" Type="nvarchar(max)" />
+          <Property Name="GeographicLEADistrictCode" Type="nvarchar(max)" />
+          <Property Name="GeographicLEADistrictName" Type="nvarchar(max)" />
+          <Property Name="NCESCode" Type="nvarchar(max)" />
+          <Property Name="LocaleCode" Type="nvarchar(max)" />
+          <Property Name="LocaleName" Type="nvarchar(max)" />
+          <Property Name="FIPSCode" Type="nvarchar(max)" />
+          <Property Name="REMCId" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="PhoneExt" Type="nvarchar(max)" />
+          <Property Name="Fax" Type="nvarchar(max)" />
+          <Property Name="FaxExt" Type="nvarchar(max)" />
+          <Property Name="LeadAdminTitle" Type="nvarchar(max)" />
+          <Property Name="LeadAdminFirstName" Type="nvarchar(max)" />
+          <Property Name="LeadAdminLastName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Zip" Type="nvarchar(max)" />
+          <Property Name="MailingAddress" Type="nvarchar(max)" />
+          <Property Name="MailingCity" Type="nvarchar(max)" />
+          <Property Name="MailingState" Type="nvarchar(max)" />
+          <Property Name="MailingZip" Type="nvarchar(max)" />
+          <Property Name="ImportedIntoCockpit" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="ETLServer_Id" Type="int" />
+          <Property Name="ISD_Id" Type="int" />
+          <Property Name="CurrentSchoolYear" Type="nchar" MaxLength="9" />
+          <Property Name="DashboardSupportContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardSupportEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardSupportPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardTrainingAndPlanningUrl" Type="nvarchar" MaxLength="150" />
+          <Property Name="DashboardTicketOrgDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardTicketAssignee" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardTicketSecurityLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardProjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardIssueType" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardMissingSchoolName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DashboardDefaultClassroomView" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SFTPPasswordForDistrictCodeUser" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ISD">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISDCode" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Region_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionCode" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_authorization_ClaimSet_authorization_User_User_Id">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ClaimSet" Type="Self.ClaimSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClaimSet">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_authorization_User_SignedForUser_Id">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="AgreementSignature" Type="Self.AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="SignedForUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_authorization_User_SigningUser_Id">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="AgreementSignature" Type="Self.AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="SigningUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_domain_Agreement_Agreement_Id">
+          <End Role="Agreement" Type="Self.Agreement" Multiplicity="1" />
+          <End Role="AgreementSignature" Type="Self.AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agreement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="Agreement_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_domain_District_District_Id">
+          <End Role="District" Type="Self.District" Multiplicity="0..1" />
+          <End Role="AgreementSignature" Type="Self.AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="District_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_domain_Region_Region_Id">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="AgreementSignature" Type="Self.AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_District_domain_ISD_ISD_Id">
+          <End Role="ISD" Type="Self.ISD" Multiplicity="0..1" />
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ISD">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="ISD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_ISD_domain_Region_Region_Id">
+          <End Role="Region" Type="Self.Region" Multiplicity="0..1" />
+          <End Role="ISD" Type="Self.ISD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ISD">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OperationsCockpitModelStoreContainer">
+          <EntitySet Name="ClaimSet" EntityType="Self.ClaimSet" Schema="authorization" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="authorization" store:Type="Tables" />
+          <EntitySet Name="Agreement" EntityType="Self.Agreement" Schema="domain" store:Type="Tables" />
+          <EntitySet Name="AgreementSignature" EntityType="Self.AgreementSignature" Schema="domain" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="domain" store:Type="Tables" />
+          <EntitySet Name="ISD" EntityType="Self.ISD" Schema="domain" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="domain" store:Type="Tables" />
+          <AssociationSet Name="FK_authorization_ClaimSet_authorization_User_User_Id" Association="Self.FK_authorization_ClaimSet_authorization_User_User_Id">
+            <End Role="User" EntitySet="User" />
+            <End Role="ClaimSet" EntitySet="ClaimSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_authorization_User_SignedForUser_Id" Association="Self.FK_domain_AgreementSignature_authorization_User_SignedForUser_Id">
+            <End Role="User" EntitySet="User" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_authorization_User_SigningUser_Id" Association="Self.FK_domain_AgreementSignature_authorization_User_SigningUser_Id">
+            <End Role="User" EntitySet="User" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_domain_Agreement_Agreement_Id" Association="Self.FK_domain_AgreementSignature_domain_Agreement_Agreement_Id">
+            <End Role="Agreement" EntitySet="Agreement" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_domain_District_District_Id" Association="Self.FK_domain_AgreementSignature_domain_District_District_Id">
+            <End Role="District" EntitySet="District" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_domain_Region_Region_Id" Association="Self.FK_domain_AgreementSignature_domain_Region_Region_Id">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_District_domain_ISD_ISD_Id" Association="Self.FK_domain_District_domain_ISD_ISD_Id">
+            <End Role="ISD" EntitySet="ISD" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_ISD_domain_Region_Region_Id" Association="Self.FK_domain_ISD_domain_Region_Region_Id">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="ISD" EntitySet="ISD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OperationsCockpit.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agreement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MimeType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActivationAgreement" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AgreementSignatures" Relationship="Self.FK_domain_AgreementSignature_domain_Agreement_Agreement_Id" FromRole="Agreement" ToRole="AgreementSignature" />
+        </EntityType>
+        <EntityType Name="AgreementSignature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgreementStatus" Type="Int32" Nullable="false" />
+          <Property Name="RoleRequiredToSign" Type="Int32" Nullable="false" />
+          <Property Name="DateSigned" Type="DateTime" Precision="3" />
+          <Property Name="SignedBody" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SignedMimeType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsExpired" Type="Boolean" Nullable="false" />
+          <Property Name="Agreement_Id" Type="Int32" Nullable="false" />
+          <Property Name="District_Id" Type="Int32" />
+          <Property Name="Region_Id" Type="Int32" />
+          <Property Name="SignedForUser_Id" Type="Int32" />
+          <Property Name="SigningUser_Id" Type="Int32" />
+          <Property Name="EmailReminderPending" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Agreement" Relationship="Self.FK_domain_AgreementSignature_domain_Agreement_Agreement_Id" FromRole="AgreementSignature" ToRole="Agreement" />
+          <NavigationProperty Name="SignedForUser" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SignedForUser_Id" FromRole="AgreementSignature" ToRole="User" />
+          <NavigationProperty Name="SigningUser" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SigningUser_Id" FromRole="AgreementSignature" ToRole="User" />
+          <NavigationProperty Name="District" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_District_District_Id" FromRole="AgreementSignature" ToRole="District" />
+          <NavigationProperty Name="Region" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_Region_Region_Id" FromRole="AgreementSignature" ToRole="Region" />
+        </EntityType>
+        <Association Name="FK_domain_AgreementSignature_domain_Agreement_Agreement_Id">
+          <End Role="Agreement" Type="Self.Agreement" Multiplicity="1" />
+          <End Role="AgreementSignature" Type="Self.AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agreement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="Agreement_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OperationsCockpitContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agreements" EntityType="Self.Agreement" />
+          <EntitySet Name="AgreementSignatures" EntityType="Self.AgreementSignature" />
+          <AssociationSet Name="FK_domain_AgreementSignature_domain_Agreement_Agreement_Id" Association="Self.FK_domain_AgreementSignature_domain_Agreement_Agreement_Id">
+            <End Role="Agreement" EntitySet="Agreements" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignatures" />
+          </AssociationSet>
+          <EntitySet Name="ClaimSets" EntityType="OperationsCockpit.Model.ClaimSet" />
+          <EntitySet Name="Users" EntityType="OperationsCockpit.Model.User" />
+          <EntitySet Name="Districts" EntityType="OperationsCockpit.Model.District" />
+          <EntitySet Name="Regions" EntityType="OperationsCockpit.Model.Region" />
+          <AssociationSet Name="FK_authorization_ClaimSet_authorization_User_User_Id" Association="OperationsCockpit.Model.FK_authorization_ClaimSet_authorization_User_User_Id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ClaimSet" EntitySet="ClaimSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_authorization_User_SignedForUser_Id" Association="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SignedForUser_Id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_authorization_User_SigningUser_Id" Association="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SigningUser_Id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_domain_District_District_Id" Association="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_District_District_Id">
+            <End Role="District" EntitySet="Districts" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_AgreementSignature_domain_Region_Region_Id" Association="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_Region_Region_Id">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="AgreementSignature" EntitySet="AgreementSignatures" />
+          </AssociationSet>
+          <EntitySet Name="ISDs" EntityType="OperationsCockpit.Model.ISD" />
+          <AssociationSet Name="FK_domain_District_domain_ISD_ISD_Id" Association="OperationsCockpit.Model.FK_domain_District_domain_ISD_ISD_Id">
+            <End Role="ISD" EntitySet="ISDs" />
+            <End Role="District" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_domain_ISD_domain_Region_Region_Id" Association="OperationsCockpit.Model.FK_domain_ISD_domain_Region_Region_Id">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="ISD" EntitySet="ISDs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ClaimSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="Int32" Nullable="false" />
+          <Property Name="District_Id" Type="Int32" />
+          <Property Name="Region_Id" Type="Int32" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="OperationsCockpit.Model.FK_authorization_ClaimSet_authorization_User_User_Id" FromRole="ClaimSet" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ClaimSets" Relationship="OperationsCockpit.Model.FK_authorization_ClaimSet_authorization_User_User_Id" FromRole="User" ToRole="ClaimSet" />
+          <NavigationProperty Name="AgreementSignatures" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SignedForUser_Id" FromRole="User" ToRole="AgreementSignature" />
+          <NavigationProperty Name="AgreementSignatures1" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_authorization_User_SigningUser_Id" FromRole="User" ToRole="AgreementSignature" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DistrictCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolType" Type="Int32" Nullable="false" />
+          <Property Name="DistrictCommonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountyCode" Type="Int32" Nullable="false" />
+          <Property Name="CountyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CharteringAgencyCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CharteringAgencyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeographicLEADistrictCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeographicLEADistrictName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NCESCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocaleCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocaleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FIPSCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="REMCId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneExt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FaxExt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeadAdminTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeadAdminFirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeadAdminLastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailingCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailingState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailingZip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImportedIntoCockpit" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ETLServer_Id" Type="Int32" />
+          <Property Name="ISD_Id" Type="Int32" />
+          <Property Name="CurrentSchoolYear" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
+          <Property Name="DashboardSupportContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardSupportEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardSupportPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardTrainingAndPlanningUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardTicketOrgDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardTicketAssignee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardTicketSecurityLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardIssueType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardMissingSchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DashboardDefaultClassroomView" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SFTPPasswordForDistrictCodeUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AgreementSignatures" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_District_District_Id" FromRole="District" ToRole="AgreementSignature" />
+          <NavigationProperty Name="ISD" Relationship="OperationsCockpit.Model.FK_domain_District_domain_ISD_ISD_Id" FromRole="District" ToRole="ISD" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AgreementSignatures" Relationship="OperationsCockpit.Model.FK_domain_AgreementSignature_domain_Region_Region_Id" FromRole="Region" ToRole="AgreementSignature" />
+          <NavigationProperty Name="ISDs" Relationship="OperationsCockpit.Model.FK_domain_ISD_domain_Region_Region_Id" FromRole="Region" ToRole="ISD" />
+        </EntityType>
+        <Association Name="FK_authorization_ClaimSet_authorization_User_User_Id">
+          <End Type="OperationsCockpit.Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="OperationsCockpit.Model.ClaimSet" Role="ClaimSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClaimSet">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_authorization_User_SignedForUser_Id">
+          <End Type="OperationsCockpit.Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="OperationsCockpit.Model.AgreementSignature" Role="AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="SignedForUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_authorization_User_SigningUser_Id">
+          <End Type="OperationsCockpit.Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="OperationsCockpit.Model.AgreementSignature" Role="AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="SigningUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_domain_District_District_Id">
+          <End Type="OperationsCockpit.Model.District" Role="District" Multiplicity="0..1" />
+          <End Type="OperationsCockpit.Model.AgreementSignature" Role="AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="District_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_AgreementSignature_domain_Region_Region_Id">
+          <End Type="OperationsCockpit.Model.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="OperationsCockpit.Model.AgreementSignature" Role="AgreementSignature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AgreementSignature">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ISD">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISDCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Region_Id" Type="Int32" />
+          <NavigationProperty Name="Districts" Relationship="OperationsCockpit.Model.FK_domain_District_domain_ISD_ISD_Id" FromRole="ISD" ToRole="District" />
+          <NavigationProperty Name="Region" Relationship="OperationsCockpit.Model.FK_domain_ISD_domain_Region_Region_Id" FromRole="ISD" ToRole="Region" />
+        </EntityType>
+        <Association Name="FK_domain_District_domain_ISD_ISD_Id">
+          <End Type="OperationsCockpit.Model.ISD" Role="ISD" Multiplicity="0..1" />
+          <End Type="OperationsCockpit.Model.District" Role="District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ISD">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="ISD_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_domain_ISD_domain_Region_Region_Id">
+          <End Type="OperationsCockpit.Model.Region" Role="Region" Multiplicity="0..1" />
+          <End Type="OperationsCockpit.Model.ISD" Role="ISD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ISD">
+              <PropertyRef Name="Region_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OperationsCockpitModelStoreContainer" CdmEntityContainer="OperationsCockpitContext">
+          <EntitySetMapping Name="Agreements">
+            <EntityTypeMapping TypeName="OperationsCockpit.Model.Agreement">
+              <MappingFragment StoreEntitySet="Agreement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IsActivationAgreement" ColumnName="IsActivationAgreement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgreementSignatures">
+            <EntityTypeMapping TypeName="OperationsCockpit.Model.AgreementSignature">
+              <MappingFragment StoreEntitySet="AgreementSignature">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AgreementStatus" ColumnName="AgreementStatus" />
+                <ScalarProperty Name="RoleRequiredToSign" ColumnName="RoleRequiredToSign" />
+                <ScalarProperty Name="DateSigned" ColumnName="DateSigned" />
+                <ScalarProperty Name="SignedBody" ColumnName="SignedBody" />
+                <ScalarProperty Name="SignedMimeType" ColumnName="SignedMimeType" />
+                <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+                <ScalarProperty Name="Agreement_Id" ColumnName="Agreement_Id" />
+                <ScalarProperty Name="District_Id" ColumnName="District_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="SignedForUser_Id" ColumnName="SignedForUser_Id" />
+                <ScalarProperty Name="SigningUser_Id" ColumnName="SigningUser_Id" />
+                <ScalarProperty Name="EmailReminderPending" ColumnName="EmailReminderPending" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClaimSets">
+            <EntityTypeMapping TypeName="OperationsCockpit.Model.ClaimSet">
+              <MappingFragment StoreEntitySet="ClaimSet">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="District_Id" ColumnName="District_Id" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="OperationsCockpit.Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="OperationsCockpit.Model.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="SFTPPasswordForDistrictCodeUser" ColumnName="SFTPPasswordForDistrictCodeUser" />
+                <ScalarProperty Name="DashboardDefaultClassroomView" ColumnName="DashboardDefaultClassroomView" />
+                <ScalarProperty Name="DashboardMissingSchoolName" ColumnName="DashboardMissingSchoolName" />
+                <ScalarProperty Name="DashboardIssueType" ColumnName="DashboardIssueType" />
+                <ScalarProperty Name="DashboardProjectName" ColumnName="DashboardProjectName" />
+                <ScalarProperty Name="DashboardTicketSecurityLevel" ColumnName="DashboardTicketSecurityLevel" />
+                <ScalarProperty Name="DashboardTicketAssignee" ColumnName="DashboardTicketAssignee" />
+                <ScalarProperty Name="DashboardTicketOrgDescription" ColumnName="DashboardTicketOrgDescription" />
+                <ScalarProperty Name="DashboardTrainingAndPlanningUrl" ColumnName="DashboardTrainingAndPlanningUrl" />
+                <ScalarProperty Name="DashboardSupportPhone" ColumnName="DashboardSupportPhone" />
+                <ScalarProperty Name="DashboardSupportEmail" ColumnName="DashboardSupportEmail" />
+                <ScalarProperty Name="DashboardSupportContact" ColumnName="DashboardSupportContact" />
+                <ScalarProperty Name="CurrentSchoolYear" ColumnName="CurrentSchoolYear" />
+                <ScalarProperty Name="ISD_Id" ColumnName="ISD_Id" />
+                <ScalarProperty Name="ETLServer_Id" ColumnName="ETLServer_Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ImportedIntoCockpit" ColumnName="ImportedIntoCockpit" />
+                <ScalarProperty Name="MailingZip" ColumnName="MailingZip" />
+                <ScalarProperty Name="MailingState" ColumnName="MailingState" />
+                <ScalarProperty Name="MailingCity" ColumnName="MailingCity" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LeadAdminLastName" ColumnName="LeadAdminLastName" />
+                <ScalarProperty Name="LeadAdminFirstName" ColumnName="LeadAdminFirstName" />
+                <ScalarProperty Name="LeadAdminTitle" ColumnName="LeadAdminTitle" />
+                <ScalarProperty Name="FaxExt" ColumnName="FaxExt" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="REMCId" ColumnName="REMCId" />
+                <ScalarProperty Name="FIPSCode" ColumnName="FIPSCode" />
+                <ScalarProperty Name="LocaleName" ColumnName="LocaleName" />
+                <ScalarProperty Name="LocaleCode" ColumnName="LocaleCode" />
+                <ScalarProperty Name="NCESCode" ColumnName="NCESCode" />
+                <ScalarProperty Name="GeographicLEADistrictName" ColumnName="GeographicLEADistrictName" />
+                <ScalarProperty Name="GeographicLEADistrictCode" ColumnName="GeographicLEADistrictCode" />
+                <ScalarProperty Name="CharteringAgencyName" ColumnName="CharteringAgencyName" />
+                <ScalarProperty Name="CharteringAgencyCode" ColumnName="CharteringAgencyCode" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CountyCode" ColumnName="CountyCode" />
+                <ScalarProperty Name="DistrictCommonName" ColumnName="DistrictCommonName" />
+                <ScalarProperty Name="SchoolType" ColumnName="SchoolType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="OperationsCockpit.Model.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ISDs">
+            <EntityTypeMapping TypeName="OperationsCockpit.Model.ISD">
+              <MappingFragment StoreEntitySet="ISD">
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ISDCode" ColumnName="ISDCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
